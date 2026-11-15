@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://m-fin.github.io/whynotz0idberg.github.io/sitemap.xml
