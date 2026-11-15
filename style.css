@@ -1,79 +1,434 @@
-.reddit {
-    position: relative;
-    float: right;
-    right: 258px;
-    top: 6px
+:root {
+  --bg: #12160f;
+  --bg-raise: #1a2116;
+  --ink: #f4f1e8;
+  --muted: #c5d0bc;
+  --signal: #d6f25c;
+  --copper: #ff8a55;
+  --line: rgba(244, 241, 232, 0.16);
+  --header: rgba(18, 22, 15, 0.96);
+  --serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+  --sans: "Avenir Next", "Segoe UI", system-ui, sans-serif;
+  --max: 72rem;
+  --pad: clamp(1.15rem, 4vw, 2.5rem);
 }
-.googleplus {
-    position: relative;
-    float: right;
-    right: 70px;
-    top: 3px
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
-.donate {
-    position: relative;
-    float: right;
-    right: -240px;
-    top: -10px
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 6.5rem;
 }
-.twitter {
-    position: relative;
-    float: right;
-    right: -80px;
-    top: 5px;
-}
-.mgoogleplus {
-    position: relative;
-    float: right;
-    right: 150px;
-    top: 3px
-}
-.mdonate {
-    position: relative;
-    right: -100px;
-    top: -20px   
-}
-.mtwitter {
-    position: relative;
-    float: left;
-    margin: 10px;
-    right: -10px
-}
-video
-{
-    width: 100%;
-    height: auto;
-}
-		html, body {
-    padding:0;
-    margin:0;
-}
+
 body {
-    overflow:hidden;
-    margin: 0;
-    background-color: #000;
+  margin: 0;
+  min-height: 100vh;
+  background:
+    radial-gradient(900px 420px at 0% -10%, rgba(214, 242, 92, 0.09), transparent 55%),
+    radial-gradient(700px 380px at 100% 0%, rgba(255, 138, 85, 0.07), transparent 50%),
+    var(--bg);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 1.05rem;
+  line-height: 1.55;
+  color-scheme: dark;
 }
 
-.footer {
-	height: 30px;
-	background-color: #232323;
-	position: fixed;
-	bottom: 0px;
-	left: 0px;
-	width: 100%;
-	color: #232323;
-	padding-left:10px;
-	padding-right: 10px;
+body::before {
+  content: "";
+  display: block;
+  height: 4px;
+  background: linear-gradient(90deg, var(--signal) 0 42%, transparent 42% 58%, var(--copper) 58% 100%);
 }
 
-.footer a {
-	color: #FF0000;
+img {
+  display: block;
+  max-width: 100%;
 }
 
-.text {
-	font-family: 'Myriad Pro', Calibri, Helvetica, Arial, sans-serif;
-	position: relative;
-	font-size: 13px;
-	color: #fff;
-	top: 7px;
+a {
+  color: inherit;
+}
+
+a:hover {
+  color: var(--signal);
+}
+
+:focus-visible {
+  outline: 2px solid var(--signal);
+  outline-offset: 3px;
+}
+
+.sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip {
+  position: absolute;
+  left: var(--pad);
+  top: 0.6rem;
+  transform: translateY(-140%);
+  background: var(--signal);
+  color: #17200f;
+  padding: 0.4rem 0.7rem;
+  z-index: 20;
+  text-decoration: none;
+}
+
+.skip:focus {
+  transform: none;
+}
+
+.site-header,
+main,
+.site-footer {
+  width: min(var(--max), calc(100% - var(--pad) * 2));
+  margin-inline: auto;
+}
+
+.site-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem 1.5rem;
+  padding: 1.1rem 0;
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  background: var(--header);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 1px 0 var(--line);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  text-decoration: none;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+.brand img {
+  width: 28px;
+  height: 28px;
+}
+
+.nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.2rem 1.1rem;
+}
+
+.nav a {
+  text-decoration: none;
+  padding: 0.45rem 0;
+  color: var(--muted);
+}
+
+.nav a:hover,
+.nav a:focus-visible {
+  color: var(--ink);
+}
+
+.hero {
+  padding: clamp(2.5rem, 8vw, 6rem) 0 clamp(2rem, 5vw, 3.5rem);
+}
+
+.kicker {
+  margin: 0 0 0.8rem;
+  color: var(--signal);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--serif);
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  line-height: 0.95;
+  text-wrap: balance;
+}
+
+h1 {
+  margin: 0;
+  font-size: clamp(3.3rem, 10vw, 6.6rem);
+}
+
+h2 {
+  margin: 0;
+  font-size: clamp(2rem, 5vw, 3.2rem);
+}
+
+h3 {
+  margin: 0;
+  font-size: clamp(1.55rem, 3vw, 2.15rem);
+  line-height: 1.05;
+}
+
+.lede,
+.band-head p,
+.project p,
+.music p,
+.profile p,
+.contact p {
+  text-wrap: pretty;
+}
+
+.lede {
+  max-width: 38rem;
+  margin: 1.4rem 0 0;
+  font-size: clamp(1.15rem, 2vw, 1.4rem);
+  line-height: 1.45;
+}
+
+.lede a {
+  color: var(--ink);
+  text-decoration-thickness: 2px;
+  text-decoration-color: var(--signal);
+  text-underline-offset: 0.18em;
+}
+
+.hero-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem 1.4rem;
+  margin: 1.8rem 0 0;
+}
+
+.text-link {
+  color: var(--ink);
+  text-underline-offset: 0.22em;
+}
+
+.band {
+  padding: clamp(2rem, 5vw, 3.5rem) 0;
+  border-top: 1px solid var(--line);
+}
+
+.band-head {
+  display: grid;
+  grid-template-columns: minmax(8rem, 14rem) 1fr;
+  gap: 1rem 2rem;
+  align-items: end;
+  margin-bottom: 0.5rem;
+}
+
+.band-head p,
+.meta,
+.site-footer {
+  color: var(--muted);
+}
+
+.band-head p {
+  margin: 0;
+  max-width: 38rem;
+}
+
+.projects {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.project {
+  display: grid;
+  grid-template-columns: 4.2rem 1fr;
+  gap: 0.4rem 1rem;
+  padding: 1.6rem 0;
+  border-top: 1px solid var(--line);
+}
+
+.project:last-child {
+  border-bottom: 1px solid var(--line);
+}
+
+#player {
+  scroll-margin-top: 6.5rem;
+}
+
+.index {
+  font-family: var(--serif);
+  font-size: 1.35rem;
+  color: var(--copper);
+  padding-top: 0.25rem;
+}
+
+.project-top {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.4rem 1.2rem;
+}
+
+.meta {
+  margin: 0;
+  font-size: 0.86rem;
+  letter-spacing: 0.04em;
+}
+
+.project p {
+  margin: 0.7rem 0 0;
+  max-width: 42rem;
+}
+
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 1.2rem;
+  margin: 0.95rem 0 0;
+}
+
+.links a {
+  color: var(--ink);
+  font-weight: 600;
+  text-decoration: none;
+  border-bottom: 2px solid var(--signal);
+  padding-bottom: 0.05rem;
+}
+
+.links a:hover {
+  color: var(--signal);
+}
+
+.music {
+  margin: 0.5rem 0 1rem;
+  padding: clamp(1.6rem, 4vw, 2.4rem);
+  background: var(--bg-raise);
+  border: 1px solid var(--line);
+  border-radius: 1.25rem;
+}
+
+.music h2 {
+  font-size: clamp(3rem, 9vw, 6rem);
+  text-transform: lowercase;
+  margin-bottom: 0.4rem;
+}
+
+.wave {
+  display: flex;
+  align-items: flex-end;
+  gap: 5px;
+  height: 52px;
+  width: min(100%, 28rem);
+  margin: 0.3rem 0 1.2rem;
+}
+
+.wave span {
+  flex: 1;
+  height: var(--h);
+  background: linear-gradient(180deg, var(--signal), var(--copper));
+  border-radius: 99px;
+  opacity: 0.9;
+}
+
+.profile-link {
+  margin: 1.2rem 0 0;
+  font-family: var(--serif);
+  font-size: clamp(1.6rem, 4vw, 2.4rem);
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+}
+
+.profile-link a {
+  color: var(--ink);
+  text-decoration-thickness: 2px;
+  text-decoration-color: var(--copper);
+  text-underline-offset: 0.14em;
+  overflow-wrap: anywhere;
+}
+
+.site-footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.4rem 1.5rem;
+  padding: 1.4rem 0 2.2rem;
+  border-top: 1px solid var(--line);
+  font-size: 0.92rem;
+}
+
+.site-footer p {
+  margin: 0;
+}
+
+.site-footer a {
+  color: var(--muted);
+}
+
+.missing {
+  min-height: 60vh;
+}
+
+@media (max-width: 720px) {
+  html {
+    scroll-padding-top: 9rem;
+  }
+
+  #player {
+    scroll-margin-top: 9rem;
+  }
+
+  .site-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .nav a {
+    padding: 0.65rem 0.1rem;
+  }
+
+  .band-head,
+  .project {
+    grid-template-columns: 2.6rem 1fr;
+  }
+
+  .band-head {
+    grid-template-columns: 1fr;
+    gap: 0.7rem;
+  }
+
+  .music {
+    border-radius: 0.9rem;
+    padding: 1.3rem 1rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+@media print {
+  body {
+    background: #fff;
+    color: #111;
+  }
+
+  .site-header {
+    position: static;
+    background: none;
+  }
+
+  a {
+    color: #111;
+  }
 }
